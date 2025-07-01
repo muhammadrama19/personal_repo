@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bus_tree" model="ir.ui.view">
+        <field name="name">res.bus.tree</field>
+        <field name="model">res.bus</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="code" />
+                <field name="capacity" />
+                <field name="image" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bus_form" model="ir.ui.view">
+        <field name="name">res.bus.form</field>
+        <field name="model">res.bus</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Bus Name" />
+                            <field name="code" placeholder="Code of the Bus" />
+                            <field name="capacity" placeholder="Capacity of the Bus" />
+                        </group>
+                        <group>
+                            <field name="image" placeholder="Image of the Bus"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bus" model="ir.actions.act_window">
+        <field name="name">Bus</field>
+        <field name="res_model">res.bus</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the Bus!
+            </p>
+            <p>
+                Busss busss
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

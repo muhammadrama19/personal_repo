@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bus_routes" model="ir.ui.view">
+        <field name="name">bus.route.tree</field>
+        <field name="model">bus.route</field>
+        <field name="arch" type="xml">
+            <list string="Bus Routes">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_route" model="ir.actions.act_window">
+        <field name="name">Routes</field>
+        <field name="res_model">bus.route</field>
+        <field name="view_mode">list</field>
+    </record>
+
+</odoo>

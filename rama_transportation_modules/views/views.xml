@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- this is the menu-->
+   <menuitem
+    id="model_name_menu"
+    name="name"
+    sequence="10"/>
+
+
+  
+
+</odoo>

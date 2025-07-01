@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_transportation_root" 
+              name="Transportation Management" 
+              web_icon="rama_transportation_modules,static/description/odoo_icon.png"
+              sequence="10"/>
+
+  
+    <menuitem id="menu_passenger_management" 
+              name="Passenger" 
+              parent="menu_transportation_root" 
+              action="action_res_passenger"
+              sequence="10"/>
+
+    <menuitem id="menu_schedule_management"
+                name="Schedule" 
+                parent="menu_transportation_root" 
+                action="action_bus_schedule"
+                sequence="20"/>
+
+    <menuitem id="menu_bus_management"
+                name="Bus"
+                parent="menu_transportation_root"
+                action="action_bus"
+                sequence="30"
+    />
+    <menuitem id="menu_configuration" 
+                name="Config"
+                parent="menu_transportation_root"
+    />
+
+    <menuitem id="menu_configuration_routes" 
+                name="Bus Route Configuration"
+                parent="menu_configuration"
+                action="action_route"
+    />
+</odoo>

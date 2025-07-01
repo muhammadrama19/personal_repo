@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bus_schedule_tree" model="ir.ui.view">
+        <field name="name">bus.schedule.tree</field>
+        <field name="model">bus.schedule</field>
+        <field name="arch" type="xml">
+            <list string="Bus Schedule">
+                <field name="name" />
+                <field name="schedule" />
+                <field name="payment_type" />
+                <field name="departure" />
+                <field name="arrival" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bus_schedule_form" model="ir.ui.view">
+        <field name="name">bus.schedule.form</field>
+        <field name="model">bus.schedule</field>
+        <field name="arch" type="xml">
+            <form string="Bus Schedule">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Name" />
+                        <field name="schedule" placeholder="Schedule Type" />
+                        <field name="payment_type" placeholder="Payment Type" />
+                    </group>
+                    <group>
+                        <field name="departure" placeholder="departure of the bus"></field>
+                        <field name="arrival" placeholder="arrival of the bus"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bus_schedule" model="ir.actions.act_window">
+        <field name="name">Schedule</field>
+        <field name="res_model">bus.schedule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first bus schedule!
+            </p>
+            <p>
+                Manage bus schedules and payment types for transportation services.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>
