@@ -1,0 +1,127 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+
+# Django stuff:
+*.log
+
+# Odoo specifics
+*.iml
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.DS_Store
+.idea/
+.vscode/
+*.db
+*.~undo-tree~
+*.~undo-tree~*
+*.pyo
+*.pot
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+*.xls
+*.xlsx
+*.csv
+*.pdf
+*.doc
+*.docx
+*.odt
+*.ppt
+*.pptx
+*.mp3
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Odoo generated files
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+*.pid
+*.seed
+*.dump
+*.bak
+*.swp
+*.swo
+*.tmp
+*.orig
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+
+# Odoo custom modules
+*.egg-info/
+*.egg/
+*.pot
+*.mo
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
