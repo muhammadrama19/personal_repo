@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Room Amenities list View -->
+    <record id="view_rama_room_amenities_list" model="ir.ui.view">
+        <field name="name">rama.room.amenities.list</field>
+        <field name="model">rama.room.amenities</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Room Amenities Form View -->
+    <record id="view_rama_room_amenities_form" model="ir.ui.view">
+        <field name="name">rama.room.amenities.form</field>
+        <field name="model">rama.room.amenities</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="responsible_id"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Building list View -->
+    <record id="view_rama_building_list" model="ir.ui.view">
+        <field name="name">rama.building.list</field>
+        <field name="model">rama.building</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="number_of_floors"/>
+                <field name="date_of_built"/>
+                <field name="address"/>
+                <field name="longitude" />
+                <field name="latitude" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Building Form View -->
+    <record id="view_rama_building_form" model="ir.ui.view">
+        <field name="name">rama.building.form</field>
+        <field name="model">rama.building</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="number_of_floors"/>
+                            <field name="date_of_built"/>
+                        </group>
+                        <group>
+                            <field name="address"/>
+                            <field name="longitude"/>
+                            <field name="latitude"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                           <field name="notes" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

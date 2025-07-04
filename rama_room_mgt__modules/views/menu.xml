@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   
+    <record id="action_rama_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">rama.room</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Buatlah ruangan
+            </p>
+        </field>
+    </record>
+
+    <record id="action_rama_building" model="ir.actions.act_window">
+        <field name="name">Buildings</field>
+        <field name="res_model">rama.building</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buatlah bangunan
+            </p>
+        </field>
+    </record>
+
+    <record id="action_rama_building_floor" model="ir.actions.act_window">
+        <field name="name">Building Floors</field>
+        <field name="res_model">rama.building.floor</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buatlah lantai bangunan
+            </p>
+        </field>
+    </record>
+
+    <record id="action_rama_room_type" model="ir.actions.act_window">
+        <field name="name">Room Types</field>
+        <field name="res_model">rama.room.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buatlah tipe ruangan
+            </p>
+        </field>
+    </record>
+
+    <record id="action_rama_room_amenities" model="ir.actions.act_window">
+        <field name="name">Room Amenities</field>
+        <field name="res_model">rama.room.amenities</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buatlah Ammenities
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="menu_room_management_root"
+        name="Room Management"
+        web_icon="rama_room_mgt__modules,static/description/odoo_icon.png"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_rama_room"
+        name="Rooms"
+        parent="menu_room_management_root"
+        action="action_rama_room"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_rama_building"
+        name="Buildings"
+        parent="menu_room_management_root"
+        action="action_rama_building"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_rama_building_floor"
+        name="Building Floors"
+        parent="menu_room_management_root"
+        action="action_rama_building_floor"
+        sequence="30"/>
+
+    <menuitem
+        id="menu_rama_room_type"
+        name="Room Types"
+        parent="menu_room_management_root"
+        action="action_rama_room_type"
+        sequence="40"/>
+
+    <menuitem
+        id="menu_rama_room_amenities"
+        name="Room Amenities"
+        parent="menu_room_management_root"
+        action="action_rama_room_amenities"
+        sequence="50"/>
+
+</odoo>

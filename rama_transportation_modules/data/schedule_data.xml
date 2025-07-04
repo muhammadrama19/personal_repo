@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data >
+        <record id="bus_schedule_1" model="bus.schedule">
+            <field name="schedule">2025-07-10 08:00:00</field>
+            <field name="departure">2025-07-10 09:00:00</field>
+            <field name="arrival">2025-07-10 12:00:00</field>
+            <field name="payment_type">cash</field>
+            <field name="bus_id" ref="rama_transportation_modules.bus_data_1"/>
+            <field name="bus_route_id" ref="rama_transportation_modules.bus_routes_data_1"/>
+
+            <field name="passenger_ids" eval="[
+                (0, 0, {'name': 'Ujang 4', 'weight': 60, 'height': 175, 'born_date': '1995-01-01'}),
+                (4, ref('rama_transportation_modules.passenger_bus_1')),
+                (4, ref('rama_transportation_modules.passenger_bus_2'))
+            ]"/>
+
+            <field name="baggage_line_ids" eval="[
+                (0, 0, {'name': 'Koper Aku', 'weight': 15}),
+                (0, 0, {'name': 'Tas Baru', 'weight': 5}),
+                (0, 0, {'name': 'Box Boxan', 'weight': 8})
+            ]"/>
+        </record>
+    </data>
+</odoo>

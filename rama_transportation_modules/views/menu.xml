@@ -11,20 +11,38 @@
               name="Passenger" 
               parent="menu_transportation_root" 
               action="action_res_passenger"
+              groups="group_transportation_passenger"
               sequence="10"/>
 
     <menuitem id="menu_schedule_management"
                 name="Schedule" 
                 parent="menu_transportation_root" 
                 action="action_bus_schedule"
+                groups="group_transportation_officer"
                 sequence="20"/>
 
     <menuitem id="menu_bus_management"
                 name="Bus"
                 parent="menu_transportation_root"
-                action="action_bus"
+                groups="group_transportation_officer"
                 sequence="30"
     />
+
+    <menuitem id="menu_bus_management_bus"
+                name="Bus"
+                parent="menu_bus_management"
+                action="action_bus"
+                groups="group_transportation_officer"
+                sequence="30"
+    />
+
+     <menuitem id="menu_driver" 
+              name="Driver" 
+              parent="menu_bus_management" 
+              action="action_driver"
+              groups="group_transportation_officer"
+              sequence="20"/>
+
     <menuitem id="menu_configuration" 
                 name="Config"
                 parent="menu_transportation_root"
@@ -34,5 +52,13 @@
                 name="Bus Route Configuration"
                 parent="menu_configuration"
                 action="action_route"
+                groups="group_transportation_officer"
+    />
+    
+    <menuitem id="menu_baggage_management" 
+                name="Baggage"
+                parent="menu_transportation_root"
+                action="action_baggage"
+                sequence="40"
     />
 </odoo>

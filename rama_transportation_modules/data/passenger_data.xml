@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data >
+        <record id="passenger_bus_1" model="res.passenger">
+            <field name="name">Ujang 1</field>
+            <field name="weight">20</field>
+            <field name="height">180</field>
+            <field name="born_date">1999-05-15</field>
+        </record>
+
+        <record id="passenger_bus_2" model="res.passenger">
+            <field name="name">Ujang 2</field>
+            <field name="weight">25</field>
+            <field name="height">175</field>
+            <field name="born_date">1998-06-20</field>
+        </record>
+
+        <record id="passenger_bus_3" model="res.passenger">
+            <field name="name">Ujang 3</field>
+            <field name="weight">30</field>
+            <field name="height">170</field>
+            <field name="born_date">1997-07-25</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

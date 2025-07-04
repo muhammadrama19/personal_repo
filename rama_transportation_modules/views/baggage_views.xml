@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_baggage_list" model="ir.ui.view">
+            <field name="name">baggage.baggage.list</field>
+            <field name="model">baggage.baggage</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="weight"/>
+                    <field name="bus_schedule_id"/>
+                </list>
+            </field>
+        </record>
+
+        
+        <record id="view_baggage_form" model="ir.ui.view">
+            <field name="name">baggage.baggage.form</field>
+            <field name="model">baggage.baggage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Baggage Name/Description"/>
+                                <field name="weight" placeholder="Weight in Kg"/>
+                            </group>
+                            <group>
+                                <field name="bus_schedule_id" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View for Baggage -->
+        <record id="view_baggage_search" model="ir.ui.view">
+            <field name="name">baggage.baggage.search</field>
+            <field name="model">baggage.baggage</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="bus_schedule_id"/>
+                    <filter string="Heavy Baggage" name="heavy_baggage" domain="[('weight', '>=', 20)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Bus Schedule" name="group_by_schedule" context="{'group_by': 'bus_schedule_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action for Baggage -->
+        <record id="action_baggage" model="ir.actions.act_window">
+            <field name="name">Baggage</field>
+            <field name="res_model">baggage.baggage</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_baggage_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first baggage record!
+                </p>
+                <p>
+                    Track baggage information for transportation services.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

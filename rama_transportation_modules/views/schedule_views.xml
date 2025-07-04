@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_bus_schedule_tree" model="ir.ui.view">
-        <field name="name">bus.schedule.tree</field>
+    <record id="view_bus_schedule_list" model="ir.ui.view">
+        <field name="name">bus.schedule.list</field>
         <field name="model">bus.schedule</field>
         <field name="arch" type="xml">
-            <list string="Bus Schedule">
+            <list decoration-muted="state == 'draft'" decoration-info="state == 'submit' or state == 'run'" decoration-success="state == 'done'">
                 <field name="name" />
-                <field name="schedule" />
-                <field name="payment_type" />
-                <field name="departure" />
-                <field name="arrival" />
+                <field name="schedule" widget="datetime"/>
+                <field name="payment_type" widget="selection"/>
+                <field name="departure" widget="datetime"/>
+                <field name="arrival" widget="datetime"/>
+                <field name="bus_id" />
+                <field name="bus_route_id" />
+                <field name="capacity" widget="integer"/>
+                <field name="state" widget="badge" decoration-muted="state == 'draft'" decoration-info="state == 'submit' or state == 'run'" decoration-success="state == 'done'" />
             </list>
         </field>
     </record>
@@ -20,18 +24,86 @@
         <field name="model">bus.schedule</field>
         <field name="arch" type="xml">
             <form string="Bus Schedule">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submit,run,done"/>
+                    <button name="action_submit" type="object" string="Submit" invisible="state != 'draft'" groups="rama_transportation_modules.group_transportation_manager" class="btn-primary"/>
+                    <button name="action_run" type="object" string="Run" invisible="state != 'submit'" groups="rama_transportation_modules.group_transportation_manager" class="btn-success"/>
+                    <button name="action_done" type="object" string="Done" invisible="state != 'run'" class="btn-info" groups="rama_transportation_modules.group_transportation_manager"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="state != 'draft'"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="name" placeholder="Name" />
-                        <field name="schedule" placeholder="Schedule Type" />
-                        <field name="payment_type" placeholder="Payment Type" />
+                        <group string="Schedule Information">
+                            <field name="schedule" widget="datetime" readonly="state != 'draft'"/>
+                            <field name="departure" widget="datetime" readonly="state != 'draft'"/>
+                            <field name="arrival" widget="datetime" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Bus and Payment">
+                            <field name="bus_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+                            <field name="bus_route_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+                            <field name="payment_type" widget="radio" readonly="state != 'draft'"/>
+                            <field name="capacity" widget="integer" readonly="True"/>
+                        </group>
                     </group>
-                    <group>
-                        <field name="departure" placeholder="departure of the bus"></field>
-                        <field name="arrival" placeholder="arrival of the bus"/>
-                    </group>
+                    <notebook>
+                        <page string="Baggage" name="baggage">
+                            <field name="baggage_line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="name" placeholder="Baggage Description"/>
+                                    <field name="weight" widget="float" placeholder="Weight (kg)"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Passengers" name="passengers">
+                            <field name="passenger_ids" readonly="state != 'draft'">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="weight" widget="float"/>
+                                    <field name="height" widget="float"/>
+                                    <field name="born_date" widget="date"/>
+                                </list>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group string="Personal Information">
+                                                <field name="name" placeholder="Full Name"/>
+                                                <field name="born_date" widget="date"/>
+                                            </group>
+                                            <group string="Physical Details">
+                                                <field name="weight" widget="float" placeholder="Weight in kg"/>
+                                                <field name="height" widget="float" placeholder="Height in cm"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
+                <chatter/>
             </form>
+        </field>
+    </record>
+
+    <record id="view_bus_schedule_search" model="ir.ui.view">
+        <field name="name">bus.schedule.search</field>
+        <field name="model">bus.schedule</field>
+        <field name="arch" type="xml">
+            <search string="Bus Schedule">
+                <field name="name"/>
+                <field name="bus_id" string="Search By Bus"/>
+                <field name="state"/>
+                <field name="schedule"/>
+                <field name="bus_route_id"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_bus" string="Bus" domain="[]" context="{'group_by': 'bus_id'}"/>
+                    <filter name="group_by_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -41,11 +113,37 @@
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create your first bus schedule!
+            Create your first bus schedule!
             </p>
             <p>
-                Manage bus schedules and payment types for transportation services.
+            Manage bus schedules and payment types for transportation services.
             </p>
+        </field>
+    </record>
+
+    <record id="action_server_bus_schedule_submit" model="ir.actions.server">
+        <field name="name">Submit Bus Schedule</field>
+        <field name="model_id" ref="model_bus_schedule"/>
+        <field name="binding_model_id" ref="model_bus_schedule"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    if record.state == 'draft':
+        record.write({'state': 'submit'})
+        </field>
+    </record>
+
+    <record id="action_server_bus_schedule_run" model="ir.actions.server">
+        <field name="name">Run Bus Schedule</field>
+        <field name="model_id" ref="model_bus_schedule"/>
+        <field name="binding_model_id" ref="model_bus_schedule"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    if record.state == 'submit':
+        record.write({'state': 'run'})
         </field>
     </record>
 

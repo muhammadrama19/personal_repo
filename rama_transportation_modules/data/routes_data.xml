@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data >
+        <record id="bus_routes_data_1" model="bus.route">
+            <field name="name">Jakarta - London</field>
+        </record>
+
+        <record id="bus_routes_data_2" model="bus.route">
+            <field name="name">Bandung - Blok M</field>
+        </record>
+
+        <record id="bus_routes_data_3" model="bus.route">
+            <field name="name">Jakarta - Bogor</field>
+        </record>
+
+        <record id="bus_routes_data_4" model="bus.route">
+            <field name="name">Jakarta - Cililin</field>
+        </record>
+
+        <record id="bus_routes_data_5" model="bus.route">
+            <field name="name">Jakarta - Tangerang</field>
+        </record>
+    </data>
+
+
+</odoo>

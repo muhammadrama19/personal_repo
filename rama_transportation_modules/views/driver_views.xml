@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_driver_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.driver.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Driver Information" invisible="is_driver == False">
+                    <group>
+                        <field name="is_driver"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_driver_list" model="ir.ui.view">
+        <field name="name">hr.employee.driver.list</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <list string="Drivers">
+                <field name="name"/>
+                <field name="work_phone"/>
+                <field name="work_email"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="is_driver"/>
+            </list>
+        </field>
+    </record>
+    
+   
+    <record id="action_driver" model="ir.actions.act_window">
+        <field name="name">Drivers</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_driver', '=', True)]</field>
+        <field name="context">{'default_is_driver': True}</field>
+    </record>
+   
+
+</odoo>

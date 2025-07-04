@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Transportation Management",
+    'name': "Transportation Management Rama",
 
     'summary': "Transportation Management System Bus and Passenger",
 
@@ -9,31 +9,33 @@ Transportation Management System
     """,
 
     'author': "Muhammad Rama Nurimani",
-    'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Uncategorized',
     'version': '0.1',
 
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'hr','mail'],
 
-    # always loaded
     'data': [
+        'security/transportation_security.xml',
         'security/ir.model.access.csv',
+        'data/bus_data.xml',
+        'data/passenger_data.xml',
+        'data/routes_data.xml',
+        'data/schedule_data.xml',
+        'data/sequence_data.xml',
+        'views/driver_views.xml',
         'views/routes_views.xml',
         'views/bus_views.xml',
         'views/schedule_views.xml',
         'views/passenger_views.xml',
-        'views/menu.xml',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/baggage_views.xml',
+        'views/menu.xml'
     ],
-    # only loaded in demonstration mode
+ 
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': True
 }
+
 
