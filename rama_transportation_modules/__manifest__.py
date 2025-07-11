@@ -17,11 +17,11 @@ Transportation Management System
     'data': [
         'security/transportation_security.xml',
         'security/ir.model.access.csv',
+        'data/sequence_data.xml',
         'data/bus_data.xml',
         'data/passenger_data.xml',
         'data/routes_data.xml',
         'data/schedule_data.xml',
-        'data/sequence_data.xml',
         'views/driver_views.xml',
         'views/routes_views.xml',
         'views/bus_views.xml',

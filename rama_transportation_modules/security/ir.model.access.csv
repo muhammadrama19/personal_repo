@@ -23,5 +23,6 @@ access_bus_schedule_manager,bus.schedule.manager,model_bus_schedule,group_transp
 access_baggage_baggage_user,baggage.baggage.user,model_baggage_baggage,group_transportation_user,1,1,1,0
 access_baggage_baggage_admin,baggage.baggage.admin,model_baggage_baggage,group_transportation_admin,1,1,1,1
 access_baggage_baggage_base,baggage.baggage.base,model_baggage_baggage,base.group_user,1,1,1,0
+access_baggage_baggage_passenger,baggage.baggage.passenger,model_baggage_baggage,group_transportation_passenger,1,0,0,0
 access_baggage_baggage_officer,baggage.baggage.officer,model_baggage_baggage,group_transportation_officer,1,1,1,0
 access_baggage_baggage_manager,baggage.baggage.manager,model_baggage_baggage,group_transportation_manager,1,1,1,1

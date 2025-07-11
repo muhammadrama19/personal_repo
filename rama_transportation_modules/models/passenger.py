@@ -17,6 +17,11 @@ class Passenger(models.Model):
             if record.born_date:
                 today = fields.Date.today()
                 born_date = fields.Date.from_string(record.born_date)
-                record.age = today.year - born_date.year - ((today.month, today.day) < (born_date.month, born_date.day))
+                base_age = today.year - born_date.year
+                has_birthday_passed = (today.month, today.day) >= (born_date.month, born_date.day)
+                if has_birthday_passed:
+                    record.age = base_age
+                else:
+                    record.age = base_age - 1
             else:
                 record.age = 0

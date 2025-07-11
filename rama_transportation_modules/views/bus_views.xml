@@ -7,8 +7,7 @@
         <field name="arch" type="xml">
             <list decoration-muted="state == 'draft'" decoration-success="state == 'ready'" decoration-warning="state == 'maintenance'" decoration-danger="state == 'deprecated'">
                 <field name="image" widget="image" options="{'size': [40, 40]}" />
-                <field name="name" />
-                <field name="code" />
+                <field name="display_name_field" string="Bus Name" />
                 <field name="capacity" widget="integer" />
                 <field name="state" widget="badge" decoration-muted="state == 'draft'" decoration-success="state == 'ready'" decoration-warning="state == 'maintenance'" decoration-danger="state == 'deprecated'" />
             </list>
@@ -33,26 +32,18 @@
                         </h3>
                     </div>
                     <group>
-                        <group string="Bus Information">
-                            <field name="capacity" widget="integer" placeholder="Maximum Passengers"/>
-                            <field name="state" widget="badge" decoration-muted="state == 'draft'" decoration-success="state == 'ready'" decoration-warning="state == 'maintenance'" decoration-danger="state == 'deprecated'"/>
-                        </group>
                         <group string="Bus Image">
                             <field name="image" widget="image" options="{'size': [150, 150], 'preview_image': 'image'}" placeholder="Upload Bus Image"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Details" name="details">
-                            <group>
-                                <group string="General Information">
-                                    <field name="name"/>
-                                    <field name="code"/>
-                                </group>
+                            
                                 <group string="Specifications">
                                     <field name="capacity" options="{'max_value': 100}"/>
                                     <field name="state"/>
                                 </group>
-                            </group>
+                          
                         </page>
                     </notebook>
                 </sheet>

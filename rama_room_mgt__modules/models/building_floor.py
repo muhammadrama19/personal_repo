@@ -16,9 +16,10 @@ class BuildingFloor(models.Model):
         help='Name of the floor',
         required=True,
     )
-    room_ids = fields.One2many(
+    room_ids = fields.Many2many(
         'rama.room',
-        'floor_id',
         string='Rooms',
-        help='Rooms located on this floor'
+        help='Rooms located on this floor',
     )
+    
+    

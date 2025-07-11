@@ -40,3 +40,10 @@ class Building(models.Model):
         string='Notes',
         help='Additional notes or comments about the building',
     )
+    
+    room_ids = fields.One2many(
+        'rama.room',
+        'building_id',
+        string='Rooms',
+        help='Rooms located in this building'
+    )

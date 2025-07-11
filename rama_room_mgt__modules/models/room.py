@@ -11,12 +11,6 @@ class Room(models.Model):
         help='Building where the room is located',
         required=True,
     )
-    floor_id = fields.Many2one(
-        'rama.building.floor',
-        string='Floor',
-        help='Floor where the room is located',
-        required=True
-    )
     capacity = fields.Integer(
         string='Capacity',
         help='Maximum number of people that can occupy the room',
@@ -49,3 +43,17 @@ class Room(models.Model):
         string='Amenities',
         help='Amenities available in this room',
     )
+    
+    akses_type = fields.Selection([
+        ('private', 'Private'),
+        ('public', 'Public')
+    ], string='Access Type',
+    default='public',
+    required=True,
+    help='Defines the access type of the room, whether it is private or public')
+    
+    
+    available_users_ids = fields.Many2many(
+        'res.users',
+        string='Available Users',
+        help='Users who can access this room')

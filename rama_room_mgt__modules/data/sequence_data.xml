@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_room_reservation" model="ir.sequence">
+        <field name="name">Room Reservation</field>
+        <field name="code">room.reservation.seq</field>
+        <field name="prefix">MRSVP/%(y)s/%(month)s/</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+    
+
+</odoo>

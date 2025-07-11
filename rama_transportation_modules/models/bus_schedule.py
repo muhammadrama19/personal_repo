@@ -1,12 +1,10 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class BusSchedule(models.Model):
     _name='bus.schedule'
     _description='Bus Schedule'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _sql_constraints = [
-        ('passenger_capacity_check', 'CHECK((SELECT COUNT(*) FROM res_passenger WHERE id IN (SELECT unnest(passenger_ids))) <= capacity)', 'The number of passengers cannot exceed the bus capacity.')
-    ]
 
     name = fields.Char(string='Name',required=True, copy=False, default='New', readonly=True, tracking=True)
     schedule = fields.Datetime(string='Schedule', tracking=True)
@@ -28,16 +26,18 @@ class BusSchedule(models.Model):
         ], default='draft', tracking=True
     )
     
-    # on change for arrival and deprarture to check if departue exceed arrival
-    @api.onchange('departure', 'arrival')
-    def _onchange_departure_arrival(self):
-        if self.departure and self.arrival and self.departure > self.arrival:
-            return {
-                'warning': {
-                    'title': 'Invalid Dates',
-                    'message': 'Departure not alowed to be after Arrival.',
-                }
-            }
+    @api.constrains('departure', 'arrival')
+    def _check_departure_arrival(self):
+        for record in self:
+            if record.departure and record.arrival and record.departure > record.arrival:
+                raise ValidationError('Departure time cannot be after arrival time.')
+    
+    @api.constrains('passenger_ids', 'capacity')
+    def _check_passenger_capacity(self):
+        for record in self:
+            if record.capacity and len(record.passenger_ids) > record.capacity:
+                raise ValidationError(f"The number of passengers ({len(record.passenger_ids)}) cannot exceed the bus capacity ({record.capacity}).")
+    
 
     def action_submit(self):
         self.state = 'submit'

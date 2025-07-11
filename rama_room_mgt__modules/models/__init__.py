@@ -7,3 +7,4 @@ from . import room_amenities
 from . import room
 from . import building
 from . import building_floor
+from . import room_reservation

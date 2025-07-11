@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "rama_room_management_modules_task3",
+    'name': "Room Management - Rama",
 
     'summary': "Room Management for Task 3",
 
@@ -19,17 +19,20 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
+        'security/room_security.xml',
         'security/ir.model.access.csv',
+        'data/sequence_data.xml',
         'views/room_views.xml',
         'views/building_views.xml',
         'views/building_floor_views.xml',
         'views/room_type_views.xml',
         'views/room_amenities_views.xml',
         'views/res_user_views.xml',
+        'views/room_reservation_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

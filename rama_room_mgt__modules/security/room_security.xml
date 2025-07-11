@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Module Room Management-->
+     <record id="module_category_room_management" model="ir.module.category">
+        <field name="name">Room Management</field>
+        <field name="description">Manage room operations, schedules, and resources</field>
+        <field name="sequence">10</field>
+     </record>
+
+     <!-- For users -->
+      <record id="group_room_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_room_management" />
+        <field name="comment">User can only read</field>
+      </record>
+
+      <!-- For Officer-->
+      <record id="group_room_officer" model="res.groups">
+        <field name="name">Officer</field>
+        <field name="category_id" ref="module_category_room_management" />
+        <field name="implied_ids" eval="[(4, ref('rama_room_mgt__modules.group_room_user'))]"/>
+        <field name="comment">Officer get menu access</field>
+      </record>
+
+        <!-- For Manager -->
+      <record id="group_room_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_room_management" />
+        <field name="implied_ids" eval="[(4, ref('rama_room_mgt__modules.group_room_officer'))]"/>
+        <field name="comment">Manager get to update the data </field>
+      </record>
+
+      <!-- For administrator-->
+    <record id="group_room_administrator" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_category_room_management" />
+        <field name="implied_ids" eval="[(4, ref('rama_room_mgt__modules.group_room_manager'))]"/>
+        <field name="comment">Administrator get full access to the module</field>
+    </record>
+
+    <!-- Module category for state based -->
+    <record id="module_category_room_state_based" model="ir.module.category">
+        <field name="name">Room State Based</field>
+        <field name="description">Manage room operations based on reservation states</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- confirmed group confirmation-->
+    <record id="group_room_confirmed" model="res.groups">
+        <field name="name">Confirmed</field>
+        <field name="category_id" ref="module_category_room_state_based" />
+        <field name="comment">Confirmed group can manage confirmed reservations</field>
+    </record>
+
+    <!-- done group -->
+    <record id="group_room_done" model="res.groups">
+        <field name="name">Done</field>
+        <field name="category_id" ref="module_category_room_state_based" />
+        <field name="implied_ids" eval="[(4, ref('rama_room_mgt__modules.group_room_confirmed'))]"/>
+        <field name="comment">Done group can manage completed reservations</field>
+    </record>
+    
+</odoo>

@@ -5,7 +5,7 @@
         <record id="bus_data_1" model="res.bus">
             <field name="name">Bus Gapurahing Rahayu (GR)</field>
             <field name="code">B123</field>
-            <field name="capacity">50</field>
+            <field name="capacity">1050</field>
             <field name="state">ready</field>
             <field name="image" type="base64" file="rama_transportation_modules/static/src/img/bus_odoo.png"/>
             
@@ -14,7 +14,7 @@
         <record id="bus_data_2" model="res.bus">
             <field name="name">Bus TransJakarta</field>
             <field name="code">B456</field>
-            <field name="capacity">60</field>
+            <field name="capacity">160</field>
             <field name="state">ready</field>
              <field name="image" type="base64" file="rama_transportation_modules/static/src/img/bus_odoo.png"/>
            
@@ -24,7 +24,7 @@
         <record id="bus_data_3" model="res.bus">
             <field name="name">Bus Damri 1</field>
             <field name="code">B455</field>
-            <field name="capacity">80</field>
+            <field name="capacity">890</field>
             <field name="state">ready</field>
              <field name="image" type="base64" file="rama_transportation_modules/static/src/img/bus_odoo.png"/>
             
@@ -34,7 +34,7 @@
         <record id="bus_data_4" model="res.bus">
             <field name="name">Bus TransJakarta 2</field>
             <field name="code">B458</field>
-            <field name="capacity">60</field>
+            <field name="capacity">160</field>
             <field name="state">ready</field>
              <field name="image" type="base64" file="rama_transportation_modules/static/src/img/bus_odoo.png"/>
             
@@ -43,7 +43,7 @@
         <record id="bus_data_5" model="res.bus">
             <field name="name">Bus Damri 2</field>
             <field name="code">B459</field>
-            <field name="capacity">80</field>
+            <field name="capacity">180</field>
             <field name="state">ready</field>
              <field name="image" type="base64" file="rama_transportation_modules/static/src/img/bus_odoo.png"/>
             
