@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="meal_schedule_line_view_form" model="ir.ui.view">
+            <field name="name">meal.schedule.line.form</field>
+            <field name="model">meal.schedule.line</field>
+            <field name="arch" type="xml">
+                <form string="Meal Schedule Line">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="schedule_id"/>
+                                <field name="schedule_display"/>
+                                <field name="product_id"/>
+                                <field name="product_tmpl_id" invisible="1"/>
+                                <field name="product_category_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="bom_id"/>
+                                <field name="quantity"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="meal_schedule_line_view_list" model="ir.ui.view">
+            <field name="name">meal.schedule.line.list</field>
+            <field name="model">meal.schedule.line</field>
+            <field name="arch" type="xml">
+                <list string="Meal Schedule Lines">
+                    <field name="schedule_display"/>
+                    <field name="product_id"/>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="product_category_id"/>
+                    <field name="bom_id"/>
+                    <field name="quantity"/>
+                </list>
+            </field>
+        </record>
+
+
+        <record id="meal_schedule_line_view_search" model="ir.ui.view">
+            <field name="name">meal.schedule.line.search</field>
+            <field name="model">meal.schedule.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Meal Schedule Lines">
+                    <field name="schedule_id"/>
+                    <field name="schedule_display"/>
+                    <field name="product_id"/>
+                    <field name="product_category_id"/>
+                    <field name="bom_id"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Schedule" name="group_schedule" context="{'group_by': 'schedule_id'}"/>
+                        <filter string="Product" name="group_product" context="{'group_by': 'product_id'}"/>
+                        <filter string="Category" name="group_category" context="{'group_by': 'product_category_id'}"/>
+                        <filter string="BOM" name="group_bom" context="{'group_by': 'bom_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="meal_schedule_line_action" model="ir.actions.act_window">
+            <field name="name">Meal Schedule Lines</field>
+            <field name="res_model">meal.schedule.line</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first meal schedule line
+                </p>
+                <p>
+                    Add menu items to your meal schedules.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

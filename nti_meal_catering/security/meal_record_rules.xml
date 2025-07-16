@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- ==================== MEAL ORDER RECORD RULES ==================== -->
+
+        <!-- Full access rule for admins -->
+        <record id="meal_order_rule_full_access" model="ir.rule">
+            <field name="name">Meal Order: Full Access</field>
+            <field name="model_id" ref="model_meal_order"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_admin'))]"/>
+        </record>
+
+        <!-- Responsible user access rule -->
+        <record id="meal_order_rule_responsible_access" model="ir.rule">
+            <field name="name">Meal Order: Responsible User Access</field>
+            <field name="model_id" ref="model_meal_order"/>
+            <field name="domain_force">[('responsible_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- Chef access rule -->
+        <record id="meal_order_rule_chef_access" model="ir.rule">
+            <field name="name">Meal Order: Chef Access</field>
+            <field name="model_id" ref="model_meal_order"/>
+            <field name="domain_force">[('chef_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- ==================== MEAL SCHEDULE RECORD RULES ==================== -->
+
+        <!-- Full access to meal schedules for admins -->
+        <record id="meal_schedule_rule_full_access" model="ir.rule">
+            <field name="name">Meal Schedule: Full Access</field>
+            <field name="model_id" ref="model_meal_schedule"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_admin'))]"/>
+        </record>
+
+        <!-- Responsible user access for meal schedules -->
+        <record id="meal_schedule_rule_responsible_access" model="ir.rule">
+            <field name="name">Meal Schedule: Responsible User Access</field>
+            <field name="model_id" ref="model_meal_schedule"/>
+            <field name="domain_force">[('meal_order_id.responsible_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- Chef access for meal schedules -->
+        <record id="meal_schedule_rule_chef_access" model="ir.rule">
+            <field name="name">Meal Schedule: Chef Access</field>
+            <field name="model_id" ref="model_meal_schedule"/>
+            <field name="domain_force">[('meal_order_id.chef_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- ==================== MEAL SCHEDULE LINE RECORD RULES ==================== -->
+
+        <!-- Full access to meal schedule lines for admins -->
+        <record id="meal_schedule_line_rule_full_access" model="ir.rule">
+            <field name="name">Meal Schedule Line: Full Access</field>
+            <field name="model_id" ref="model_meal_schedule_line"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_admin'))]"/>
+        </record>
+
+        <!-- Responsible user access for meal schedule lines -->
+        <record id="meal_schedule_line_rule_responsible_access" model="ir.rule">
+            <field name="name">Meal Schedule Line: Responsible User Access</field>
+            <field name="model_id" ref="model_meal_schedule_line"/>
+            <field name="domain_force">[('schedule_id.meal_order_id.responsible_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- Chef access for meal schedule lines -->
+        <record id="meal_schedule_line_rule_chef_access" model="ir.rule">
+            <field name="name">Meal Schedule Line: Chef Access</field>
+            <field name="model_id" ref="model_meal_schedule_line"/>
+            <field name="domain_force">[('schedule_id.meal_order_id.chef_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_manager')), (4, ref('group_meal_officer')), (4, ref('group_meal_user'))]"/>
+        </record>
+
+        <!-- ==================== MEAL SCHEDULE SPECIFIC RULES ==================== -->
+        
+        <!-- Block meal order access for schedule users -->
+        <record id="meal_order_rule_schedule_user_block" model="ir.rule">
+            <field name="name">Meal Order: Block Schedule User Access</field>
+            <field name="model_id" ref="model_meal_order"/>
+            <field name="domain_force">[('id', '=', False)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_schedule_user'))]"/>
+        </record>
+
+        <!-- Full access to meal schedules for schedule users -->
+        <record id="meal_schedule_rule_schedule_user_full" model="ir.rule">
+            <field name="name">Meal Schedule: Schedule User Full Access</field>
+            <field name="model_id" ref="model_meal_schedule"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_meal_schedule_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

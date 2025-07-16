@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="seq_meal_lines" model="ir.sequence">
+            <field name="name">Meal Lines Sequence</field>
+            <field name="code">meal.lines.sequence</field>
+            <field name="prefix">ML/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+        </record>
+    </data>
+
+</odoo>

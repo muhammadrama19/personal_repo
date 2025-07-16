@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- ==================== CATEGORIES ==================== -->
+    
+    <!-- Root category untuk Meal  -->
+    <record id="meal_category_root" model="ir.module.category">
+        <field name="name">Meal</field>
+        <field name="description">Meal management and catering operations</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Sub category untuk Basic Access -->
+    <record id="meal_category_access" model="ir.module.category">
+        <field name="name">Meal Access</field>
+        <field name="description">Basic access levels for meal management</field>
+        <field name="sequence">20</field>
+        <field name="parent_id" ref="meal_category_root"/>
+    </record>
+
+    <!-- Sub category untuk Button Actions -->
+    <record id="meal_category_actions" model="ir.module.category">
+        <field name="name">Meal Actions</field>
+        <field name="description">Advanced action permissions for meal orders</field>
+        <field name="sequence">30</field>
+        <field name="parent_id" ref="meal_category_root"/>
+    </record>
+
+    <!-- Sub category untuk Record Rules -->
+    <record id="meal_category_record_rules" model="ir.module.category">
+        <field name="name">Meal Record Rules</field>
+        <field name="description">Record-level access control for meal orders</field>
+        <field name="sequence">40</field>
+        <field name="parent_id" ref="meal_category_root"/>
+    </record>
+
+    <!-- Sub category untuk Meal Schedule -->
+    <record id="meal_category_schedule" model="ir.module.category">
+        <field name="name">Meal Schedule</field>
+        <field name="description">Manage meal schedules independently</field>
+        <field name="sequence">50</field>
+        <field name="parent_id" ref="meal_category_root"/>
+    </record>
+
+    <!-- ==================== 1. ACCESS GROUPS (Hierarchical) ==================== -->
+
+    <!-- User: hanya dapat membaca (read-only) -->
+    <record id="group_meal_user" model="res.groups">
+        <field name="name">Meal User</field>
+        <field name="category_id" ref="meal_category_access"/>
+        <field name="comment">User: hanya dapat membaca (read-only)</field>
+    </record>
+
+    <!-- Officer: dapat submit meal orders -->
+    <record id="group_meal_officer" model="res.groups">
+        <field name="name">Meal Officer</field>
+        <field name="category_id" ref="meal_category_access"/>
+        <field name="implied_ids" eval="[(4, ref('nti_meal_catering.group_meal_user')),
+                                        (4, ref('nti_meal_catering.group_action_submit_meal_order'))]"/>
+        <field name="comment">Officer: dapat mengakses menu dan submit orders</field>
+    </record>
+
+    <!-- Manager: dapat melakukan advanced actions -->
+    <record id="group_meal_manager" model="res.groups">
+        <field name="name">Meal Manager</field>
+        <field name="category_id" ref="meal_category_access"/>
+        <field name="implied_ids" eval="[(4, ref('nti_meal_catering.group_meal_officer')),
+                                        (4, ref('nti_meal_catering.group_action_confirm_meal_order')),
+                                        (4, ref('nti_meal_catering.group_action_done_meal_order')),
+                                        (4, ref('nti_meal_catering.group_action_cancel_meal_order')),
+                                        (4, ref('nti_meal_catering.group_action_reject_meal_order'))]"/>
+        <field name="comment">Manager: dapat melakukan advanced actions termasuk confirm, done, cancel, reject</field>
+    </record>
+
+    <!-- Admin: full access (create/update/delete) -->
+    <record id="group_meal_admin" model="res.groups">
+        <field name="name">Meal Admin</field>
+        <field name="category_id" ref="meal_category_access"/>
+        <field name="implied_ids" eval="[(4, ref('nti_meal_catering.group_meal_manager'))]"/>
+        <field name="comment">Admin: full access (create/update/delete)</field>
+    </record>
+
+    <!-- ==================== 2. BUTTON ACTION GROUPS  ==================== -->
+
+    <record id="group_action_submit_meal_order" model="res.groups">
+        <field name="name">Action Submit Meal Order</field>
+        <field name="category_id" ref="meal_category_actions"/>
+        <field name="comment">User can submit meal orders</field>
+    </record>
+
+    <record id="group_action_confirm_meal_order" model="res.groups">
+        <field name="name">Action Confirm Meal Order</field>
+        <field name="category_id" ref="meal_category_actions"/>
+        <field name="comment">User can confirm meal orders </field>
+    </record>
+
+    <record id="group_action_done_meal_order" model="res.groups">
+        <field name="name">Action Done Meal Order</field>
+        <field name="category_id" ref="meal_category_actions"/>
+        <field name="comment">User can mark meal orders as done </field>
+    </record>
+
+    <record id="group_action_cancel_meal_order" model="res.groups">
+        <field name="name">Action Cancel Meal Order</field>
+        <field name="category_id" ref="meal_category_actions"/>
+        <field name="comment">User can cancel meal orders</field>
+    </record>
+
+    <record id="group_action_reject_meal_order" model="res.groups">
+        <field name="name">Action Reject Meal Order</field>
+        <field name="category_id" ref="meal_category_actions"/>
+        <field name="comment">User can reject meal orders</field>
+    </record>
+
+    <!-- ==================== 3. RECORD RULE GROUPS ==================== -->
+
+    <record id="group_meal_order_full_access" model="res.groups">
+        <field name="name">Meal Order Full Access</field>
+        <field name="category_id" ref="meal_category_record_rules"/>
+        <field name="comment">User has full access to all meal orders</field>
+    </record>
+
+    <record id="group_meal_order_responsible_access" model="res.groups">
+        <field name="name">Meal Order Responsible Access</field>
+        <field name="category_id" ref="meal_category_record_rules"/>
+        <field name="comment">User can only access meal orders where they are responsible</field>
+    </record>
+
+    <record id="group_meal_order_chef_access" model="res.groups">
+        <field name="name">Meal Order Chef Access</field>
+        <field name="category_id" ref="meal_category_record_rules"/>
+        <field name="comment">User can only access meal orders where they are assigned as chef</field>
+    </record>
+
+    <!-- ==================== 4. MEAL SCHEDULE SPECIFIC GROUPS ==================== -->
+
+    <record id="group_meal_schedule_user" model="res.groups">
+        <field name="name">Meal Schedule User</field>
+        <field name="category_id" ref="meal_category_schedule"/>
+        <field name="comment">User can access meal schedules basic CRUD (independent from meal orders)</field>
+    </record>
+
+</odoo>
